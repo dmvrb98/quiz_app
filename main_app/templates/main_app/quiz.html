@@ -1,0 +1,22 @@
+{% extends "./base.html" %}
+
+{% block page_header %}
+<h2>Choose the right answer</h2>
+{% endblock page_header %}
+{% block content %}
+{% for quest in question %}
+<form action="{% url 'main_app:count_result' quest.id %}" method="post">п
+  {% csrf_token %}
+<ul>
+  {{ quest.question }}
+</ul>
+<ul>
+  {{ form.answer }}
+</ul>
+{% endfor %}
+ <input type="submit" value="Check your answers">
+</form>
+<ul>
+</ul>   
+
+{% endblock content %}

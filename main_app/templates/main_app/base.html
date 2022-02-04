@@ -1,0 +1,63 @@
+{% load bootstrap4 %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+<!doctype html>
+<html lang="us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+      shrink-to-fit=no">
+    <title>Blog</title>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 border">
+      <a class="navbar-brand" href="{% url 'main_app:base' %}">Quiz App</a>
+      {% if user.is_authenticated %}
+      <a class="nav-link" href="{% url 'main_app:question' %}">Create question</a>
+      {% endif %}
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <ul class="navbar-nav ml-auto">
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin:index' %}">Admin Panel</a>
+          </li>
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <span class="navbar-text">Signed in as {{ user.username }}.</span>
+          </li>
+          <li class="nav-item navbar-dark bg-dark">
+            <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:register' %}">Sign up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:login' %}">Login</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  <main role="main" class="container">
+    <div class="pb-2 mb-2 border-bottom">
+         {% block page_header %}{% endblock page_header %}
+         {% block content %}
+         <div class="jumbotron">
+  <h1 class="display-4">Hello, smarty!</h1>
+  <p class="lead">Try to found out how smart you are, answer our questions and get your score</p>
+  <hr class="my-4">
+  <a class="btn btn-primary btn-lg" href="{% url 'main_app:quest' %}" role="button">Give me questions</a>
+</div>
+         {% endblock content %}
+    </div>
+  </main>
+</body>
+</html>
