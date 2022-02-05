@@ -44,7 +44,7 @@ rm: ## Remove all containers
 	$(DOCKER_COMPOSE) -f $(DOCKERCOMPOSE_PATH) rm
 
 debug: ## Debug backend app
-	$(DOCKER_COMPOSE) -f $(DOCKERCOMPOSE_PATH) run -T --service-ports $(APP)
+	$(DOCKER_COMPOSE) -f $(DOCKERCOMPOSE_PATH) run --service-ports $(APP)
 
 build: ## Build all images
 	$(DOCKER_COMPOSE) -f $(DOCKERCOMPOSE_PATH) build
