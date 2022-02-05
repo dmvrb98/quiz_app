@@ -5,7 +5,7 @@
 {% endblock page_header %}
 {% block content %}
 {% for quest in question %}
-<form action="{% url 'main_app:count_result' quest.id %}" method="post">п
+<form action="{% url 'main_app:count_result' quest.id %}" method="post">
   {% csrf_token %}
 <ul>
   {{ quest.question }}
@@ -13,10 +13,10 @@
 <ul>
   {{ form.answer }}
 </ul>
-{% endfor %}
- <input type="submit" value="Check your answers">
+<input type="submit" value="Check your answer">
 </form>
+{% endfor %}
 <ul>
-</ul>   
+</ul>
 
 {% endblock content %}
