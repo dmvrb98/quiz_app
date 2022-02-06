@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: bash -c "poetry run python manage.py runserver 0.0.0.0:9001"
+    env_file: ./envs/local.env
+    volumes:
+      - .:/app/
+    ports:
+      - 9001:9001
+    links:
+      - postgres
+    networks:
+      - quiz_app
+
+  postgres:
+    image: postgres:14
+    env_file: ./envs/local.env
+    volumes:
+      - pg_db:/var/lib/postgresql/data/
+    networks:
+      - quiz_app
+
+networks:
+  quiz_app:
+
+volumes:
+  pg_db:
